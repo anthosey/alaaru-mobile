@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+    <ion-title>CONTACT PERSON INFO</ion-title>
+    <ion-buttons slot="start" color="primary">
+    <!-- <ion-menu-button></ion-menu-button> -->
+    <ion-button (click)="onCancel()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+    
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" text-center>
+        <h3>Pickup Contact</h3>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Who should we pickup from?</ion-label>
+          <ion-input type="text" [disabled] = "pickupFromMe" [(ngModel)] = "pickupContactPerson"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Person's mobile number?</ion-label>
+          <ion-input type="number" [disabled] = "pickupFromMe" [(ngModel)] = "pickupContactPersonMobile"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Person's email?</ion-label>
+          <ion-input type="email" [disabled] = "pickupFromMe" [(ngModel)] = "pickupContactPersonEmail"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label>use my info</ion-label>
+          <ion-toggle [(ngModel)]="pickupFromMe" (change) = "changePickupFromMe()"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" text-center>
+        <h3>Delivery Contact</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Who should we deliver to?</ion-label>
+          <ion-input type="text" [disabled] = "deliverToMe" [(ngModel)] = "deliveryContactPerson"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Person's mobile number?</ion-label>
+          <ion-input type="text" [disabled] = "deliverToMe" [(ngModel)] = "deliveryContactPersonMobile"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Person's email?</ion-label>
+          <ion-input type="email" [disabled] = "deliverToMe" [(ngModel)] = "deliveryContactPersonEmail"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label>use my info</ion-label>
+          <ion-toggle [(ngModel)]="deliverToMe" (change) = "changeDeliverToMe()"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-button expand="block" (click) = "acceptOptions()" >Go on</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

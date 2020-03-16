@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Ionic App</title>
+
+  <base href="/" />
+
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <!-- Paystack -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <!-- Google API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBglIto2YHcaC5u3dZdLd5WkbOTgopr_qQ&v=3.exp&libraries=places">
+  </script>
+  
+  <script>
+  function sayHi(){
+    console.log('Hiiiiiiiiiiiiiiiiiii');
+  }
+  </script>
+
+<script>
+  function payWithPaystack(email, amount, currency,ref){
+    var handler = PaystackPop.setup({
+      key: 'pk_test_deeb7ec8ef28f883d41be72ce9be491eaeb348a7',
+      email: email,
+      amount: amount,
+      currency: currency,
+      ref: ref, // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+      metadata: {
+         custom_fields: [
+            {
+                display_name: "Mobile Number",
+                variable_name: "mobile_number",
+                value: "+2348038094457"
+            }
+         ]
+      },
+      callback: function(response){
+          alert('success. transaction ref is ' + response.reference);
+      },
+      onClose: function(){
+          alert('window closed');
+      }
+    });
+    handler.openIframe();
+  }
+</script>
+  
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>

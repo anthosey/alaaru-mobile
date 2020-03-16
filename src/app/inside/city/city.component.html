@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Cities we operate in</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div style="height: 50px;"></div>
+  <ion-row>
+    <ion-col>
+      <ion-img src="assets/img/city.svg" class="image-logo" alt="Fund wallet"></ion-img>
+    </ion-col>
+  </ion-row>
+
+  <ion-item lines="none" class="bordered-item">
+    <ion-label position="floating">Select a city</ion-label>
+    <ion-select name="cityOption" id="cityOption" ngModel required 
+    #cityOptionCtrl = "ngModel" (ionChange)="onChangeCityOption(cityOptionCtrl)">
+      <ion-select-option *ngFor="let city of cities">{{ city.cityName }}, {{ city.country }}
+      </ion-select-option>
+      </ion-select>
+  </ion-item>
+
+  <ion-item class="flat-item" padding-top>
+    <ion-label>Save this selection for me</ion-label>
+    <ion-toggle name="chkSaveOption" id="chkSaveOption" ngModel #saveOptionCtrl = "ngModel"
+    (ionChange)="onChangeSaveOption(saveOptionCtrl)" color="primary"></ion-toggle>
+
+    
+            <!-- <ion-toggle name="deliverySwitch" #deliverySwitch checked="{{ deliverySwitchState }}" color="primary"
+              (ionChange)="getCurrentPosition(deliverySwitch)"></ion-toggle> -->
+
+  </ion-item>
+<div class="ion-text-right">
+  
+  <ion-button color="primary" fill="solid" size="large" expand="block" (click)="onProceed()">Proceed</ion-button>
+  
+</div>
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+    <ion-title>VEHICLE TYPES</ion-title>
+    <ion-buttons slot="start" color="primary">
+    <!-- <ion-menu-button></ion-menu-button> -->
+    <ion-back-button defaultHref="/inside"></ion-back-button>
+    <ion-button *ngIf="fullVehicleCapacity" (click)="onRemoveFullCapacity()" color="secondary" full="clear"><ion-icon name="close"></ion-icon>Remove Full Capacity Selection</ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <ion-col size-sm="6" offset-sm="3" no-padding>
+        <ion-text color="tertiary" padding text-center>
+          <h3>Please make a choice of vehicle suitable to move your items.</h3>
+        </ion-text>
+
+          <ion-radio-group #vehicle no-padding (ionChange)="onChange(vehicle)">
+            <ion-list *ngFor="let vehicle of vehicleTypes" no-padding>
+            <ion-card no-padding color="light-tint">
+              <ion-card-header no-padding>
+                <ion-card-title text-center padding-top>
+                  <ion-label>{{ vehicle.vehicleType }}</ion-label>
+                </ion-card-title>
+              </ion-card-header>
+              <ion-card-title text-center>
+                <ion-img [src]="vehicle.imageUrl" style="width: 150px;" no-padding></ion-img>
+              </ion-card-title>
+            
+ 
+              <ion-card-content text-center no-padding>
+                {{ vehicle.vehicleDescription }}
+              </ion-card-content>
+              
+            <ion-item *ngIf="vehicle.allowFullVehicleCapacity" lines="none">
+              <ion-button color="tertiary" fill="clear" (click) ="onClick()">Rent full capacity</ion-button>   
+            </ion-item>
+          
+
+              <ion-item >
+                <ion-label>Choose {{ vehicle.vehicleType }}</ion-label>
+                <ion-radio value="{{ vehicle.vehicleType }}"></ion-radio>
+              </ion-item>
+            </ion-card>
+            </ion-list>    
+          </ion-radio-group>
+
+      </ion-col>
+</ion-row>
+</ion-grid>
+
+<!-- fab placed to the bottom end -->
+<ion-fab vertical="center" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="onProceed()">
+    <!-- <ion-icon name="arrow-dropright"></ion-icon> -->
+  NEXT
+  </ion-fab-button>
+</ion-fab>
+
+</ion-content>

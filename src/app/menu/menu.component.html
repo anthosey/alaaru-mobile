@@ -1,0 +1,59 @@
+<ion-menu side="start" contentId="first" class="logo-toolbar">
+  <ion-header>
+    <ion-buttons slot="start">
+
+    </ion-buttons>
+    <ion-toolbar color="dark">       
+      <ion-img src="assets/img/logo_small.jpg" class="image-logo" alt="ALAARU LOGISTICS"></ion-img>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content color="dark">
+    <ion-list color="dark"  no-padding>
+
+      <ion-menu-toggle>
+      <ion-item lines="none" routerLink="/profile" color="dark">
+        <ion-icon slot="start" name="person"></ion-icon>
+          <span class="menu-text">Profile</span>
+      </ion-item>
+    </ion-menu-toggle>
+
+    <ion-menu-toggle>
+      <ion-item lines="none" (click)="startAlaaru()" color="dark">
+        <ion-icon slot="start" name="stats"></ion-icon>
+        <span class="menu-text">New Request</span>
+      </ion-item>
+    </ion-menu-toggle>
+
+    <ion-menu-toggle>
+      <ion-item lines="none" routerLink="/inside" color="dark">
+        <ion-icon slot="start" name="stats"></ion-icon>
+        <span class="menu-text">Transactions</span>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item lines="none" routerLink="/item-tracking" color="dark">
+        <ion-icon slot="start" name="search"></ion-icon>
+        <span class="menu-text">Parcel Tracker</span>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item lines="none" routerLink="/fund-wallet" color="dark">
+        <ion-icon slot="start" name="card"></ion-icon>
+        <span class="menu-text">Fund Wallet</span>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item lines="none" routerLink="buy-airtime" color="dark">
+        <ion-icon slot="start" name="contract"></ion-icon>
+        <span class="menu-text">Buy Airtime</span>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-item lines="none" (click)="onLogout()" color="dark">
+        <ion-icon name="log-out" slot="start"></ion-icon>
+      <span class="menu-text">Logout</span>
+      </ion-item>
+    </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>

@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar> 
+    <ion-title>INTER CITY</ion-title>
+    <ion-buttons slot="start" color="primary">
+    <!-- <ion-menu-button></ion-menu-button> -->
+    <ion-back-button defaultHref="/inside"></ion-back-button>
+    <!-- <ion-button *ngIf="fullVehicleCapacity" (click)="onRemoveFullCapacity()" color="secondary" full="clear"><ion-icon name="close"></ion-icon>Remove Full Capacity Selection</ion-button> -->
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <form #f="ngForm" (ngSubmit) = "onSubmit(f)">
+    
+<ion-grid no-padding>
+<ion-row no-padding>
+  <ion-col size-sm="6" offset-sm="3" text-center>
+    <h2>Select cities</h2>
+  </ion-col>
+</ion-row>
+
+  <ion-row no-padding>
+    <ion-col size-sm="6" offset-sm="3">
+
+        <ion-item lines="none" class="bordered-item">
+          <ion-label position="floating">City From</ion-label>
+          <ion-select name="cityFrom" id="cityFrom" ngModel required #cityFromCtrl="ngModel"
+            (ionChange)="onChangeCityFrom(cityFromCtrl)">
+            
+            <ion-select-option *ngFor="let city of cities" value="{{ city.cityName }}">{{ city.cityName }}</ion-select-option>
+            <!-- <ion-select-option value="Lagos">Lagos</ion-select-option>
+            <ion-select-option value="Portharcourt">Portharcourt</ion-select-option>
+            <ion-select-option value="Ibadan">Ibadan</ion-select-option> -->
+          </ion-select>
+          <p class="errorMsg" *ngIf="!cityFromCtrl.valid && cityFromCtrl.touched">Please select a city</p>
+        </ion-item>
+
+    </ion-col>
+  </ion-row>
+
+  <ion-row no-padding>
+    <ion-col size-sm="6" offset-sm="3">
+
+        <ion-item lines="none" class="bordered-item">
+          <ion-label position="floating">City To</ion-label>
+          <ion-select name="cityTo" id="cityTo" ngModel required #cityToCtrl="ngModel"
+            (ionChange)="onChangeCityTo(cityToCtrl)">
+            
+            <ion-select-option *ngFor="let city of cities" value="{{ city.cityName }}">{{ city.cityName }}</ion-select-option>
+         
+          </ion-select>
+          <p class="errorMsg" *ngIf="!cityToCtrl.valid && cityToCtrl.touched">Please select a city</p>
+        </ion-item>
+
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="cityServices" no-padding>
+    <ion-col size-sm="6" offset-sm="3" text-center>
+      <h2>Choose a pickup & delivery type</h2>
+    </ion-col>
+  </ion-row>
+
+<ion-row no-padding>
+  <ion-col size-sm="6" offset-sm="3">
+    <ion-radio-group name="interCityOption" required #interCity disabled no-padding (ionChange)="onChange(interCity)">
+      <!-- <ion-list *ngFor="let vehicle of vehicleTypes" no-padding> -->
+        <ion-list *ngFor="let service of cityServices">
+          <ion-item>
+            <ion-label>{{ service.serviceName }}</ion-label>
+            <ion-radio value="{{ service.serviceCode }}"></ion-radio>
+          </ion-item>
+      </ion-list>
+    </ion-radio-group>
+  </ion-col>
+</ion-row>
+
+<ion-row *ngIf="note" no-padding>
+  <ion-col size-sm="6" offset-sm="3" padding>
+    <div class="note">
+    <ion-note color="secondary"> {{ note }} </ion-note>
+    <ion-icon color="secondary" name="information-circle-outline"></ion-icon>
+  </div>
+  </ion-col>
+</ion-row>
+
+  <ion-row no-padding>
+    <ion-col size-sm="6" offset-sm="3">
+      <ion-button type="submit" [disabled] = "!f.valid" 
+      color="primary" expand="block" fill="solid"
+      size="large"
+      >Proceed
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
+</form>
+</ion-content>

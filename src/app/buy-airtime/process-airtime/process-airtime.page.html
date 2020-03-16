@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>REF : {{transactionRef}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/buy-airtime"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="height: 50px;"></div>
+  <ion-row>
+    <ion-col>
+      <ion-img src="assets/img/payment_confirm.svg" class="image-logo" alt="Fund wallet"></ion-img>
+    </ion-col>
+  </ion-row>
+
+<form #f="ngForm" (ngSubmit) ="onProceed(f)">
+<ion-grid>
+<!-- <ion-row>
+  <ion-col size-sm="6" offset-sm="3">
+    <ion-item text-center lines="none">
+      <ion-label>Ref: {{transactionRef}} </ion-label>
+    </ion-item>
+  </ion-col>
+</ion-row> -->
+
+  <ion-row>
+    <ion-col size-sm="6" offset-sm="3">
+      <ion-item class="flat-item">
+        <ion-label position="fixed">Phone :</ion-label>
+        <ion-input text="number" name="mobile" id="mobile" (ionInput)="onChange()" ngModel value={{mobile}}></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size-sm="6" offset-sm="3">
+      <ion-item class="flat-item">
+        <ion-label position="fixed">Amount :</ion-label>
+        <ion-input type="number" name="amount" id="amount" ngModel value={{amount}}></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="networkProvider">
+    <ion-col size-sm="6" offset-sm="3">
+      <ion-item text-center lines="none" class="flat-item">
+        <ion-label color="secondary">Provider: {{ networkProvider }}</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+<ion-row>
+  <ion-col size-sm="6" offset-sm="3">
+  <ion-button type="submit" fill="solid" expand="block" size="large">Pay now</ion-button>
+  </ion-col>
+</ion-row>
+</ion-grid>
+</form>
+</ion-content>

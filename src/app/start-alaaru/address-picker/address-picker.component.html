@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      
+      <ion-button (click)="onCancel()"><ion-icon name="caret-back-outline"></ion-icon></ion-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancel()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content no-padding no-margin>
+
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" no-padding no-margin>
+    <ion-grid no-padding no-margin>
+      <!-- <ion-row *ngIf="logisticsType === 'Inter-city'">
+        <ion-col size-sm="6" offset-sm="3" text-center>
+          <h2>{{ interstate_CityFrom }} - {{ interstate_CityTo }}</h2>
+        </ion-col>
+      </ion-row> -->
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+
+          <ion-item lines="none" class="bordered-item">
+            <ion-label position="floating">Pickup Address</ion-label>
+
+            <ion-input [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" id="pickupAddress"
+              name="pickupAddress" required #pickupAddressCtrl="ngModel" clear-input></ion-input>
+            <p class="flat-item-small errorMsg" *ngIf="!pickupAddressCtrl.valid && pickupAddressCtrl.touched">Please supply a pickup
+              address</p>
+          </ion-item>
+
+
+          <ion-list [hidden]="autocompleteItems.length == 0 || autocomplete.input.length == 0">
+            <ion-item *ngFor="let item of autocompleteItems"
+            tappable (click)="selectSearchResult(item)"
+            class="flat-item">{{ item.description }}
+            </ion-item>
+          </ion-list>
+
+
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row no-padding no-margin>
+          <ion-col size-sm="6" offset-sm="3" no-padding no-padding>
+            <div class="div-head" no-padding no-padding>
+              <h3>Delivery Address</h3>
+            </div>
+          </ion-col>
+        </ion-row> -->
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item lines="none" class="bordered-item">
+            <ion-label position="floating">Delivery Address</ion-label>
+
+            <ion-input [(ngModel)]="autocomplete_delivery.input" (ionInput)="updateSearchResults_delivery()" type="text"
+              id="deliveryAddress" name="deliveryAddress" required #deliveryAddressCtrl="ngModel" clear-input></ion-input>
+            <p class="flat-item-small errorMsg" *ngIf="!deliveryAddressCtrl.valid && deliveryAddressCtrl.touched">Please supply a
+              delivery address</p>
+          </ion-item>
+
+          <ion-list [hidden]="autocompleteItems_delivery.length == 0 || autocomplete_delivery.input.length == 0">
+            <ion-item *ngFor="let item of autocompleteItems_delivery" 
+            tappable
+            (click)="selectSearchResult_delivery(item)"
+            class="flat-item">
+              {{ item.description }}
+            </ion-item>
+          </ion-list>
+
+        </ion-col>
+      </ion-row>
+
+    
+    </ion-grid>
+
+  </form>
+  
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "alaaru-mobile",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

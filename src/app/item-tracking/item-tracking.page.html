@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>PARCEL TRACKER</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="height: 50px;"></div>
+  <form #f="ngForm" (ngSubmit) = "onSubmit(f)"> 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-img src="assets/img/address.svg" class="image-logo" alt="Item Tracker"></ion-img>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row text-center padding>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item class="bordered-item">
+          <ion-input type="search" 
+          autofocus required minlength="8" 
+          placeholder="Enter your Reference number" 
+          ngModel name="ref" id="ref" 
+          class="text-middle"
+          ></ion-input>  
+        </ion-item>
+    </ion-col>
+    </ion-row>
+    
+    <ion-row text-center padding>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-button type='submit' size="large" fill="solid" expand="block" [disabled]="!f.valid" size="large">Track Now</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</form>
+</ion-content>

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button defaultHref="/start-alaaru/addresses"></ion-menu-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <div id="map"></div>
+  <div id="contents">
+    <ion-grid no-padding style="height: 30%">
+      <ion-row no-padding>
+        <ion-col size-sm="6" offset-sm="3" text-center no-padding>
+          <h4>Hi, </h4> 
+        </ion-col>
+      </ion-row>
+    
+      <ion-row no-padding>
+        <ion-col size-sm="6" offset-sm="3" text-center no-padding>
+          <ion-item class="front-bordered-item-small">
+            <ion-label position="floating">What would you like to ship?</ion-label>
+            <ion-textarea type="text" rows="2"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    
+      
+      <ion-row no-padding>
+        <ion-col size-sm="6" offset-sm="3" text-center no-padding>
+          
+          <ion-grid no-padding>
+            <ion-row no-padding>
+              <ion-col size-sm="6" no-padding>
+                <ion-item class="front-bordered-item-small" lines="none">
+                  <ion-label position="floating">Total Weight (Kg)</ion-label>
+                  <ion-input type="number"></ion-input>
+                </ion-item>
+          
+              </ion-col>
+    
+              <ion-col size-sm="6" no-padding>
+                <ion-item class="front-bordered-item-small" lines="none">
+                  <ion-label position="floating" (click)="presentActionSheet()"><ion-icon name="time"></ion-icon>{{ serviceType }}</ion-label>
+                  <ion-input (click)="presentActionSheet()"></ion-input>
+                </ion-item>      
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size-sm="12" no-padding>
+              
+                <ion-button expand="block" (click) ="proceed()">Proceed</ion-button>      
+            </ion-col>
+            </ion-row>
+          </ion-grid>
+    
+        </ion-col>
+      </ion-row>
+    
+    </ion-grid>
+  </div>
+
+
+<!-- Fab buttons begin here -->
+<ion-fab vertical="center" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="getCurrentLocation()" color="medium-shade">
+    <ion-icon name="locate"></ion-icon>
+
+  </ion-fab-button>
+</ion-fab>
+
+<!-- <ion-fab vertical="top" horizontal="start" slot="fixed">
+<ion-menu-toggle>
+  <ion-fab-button color="dark">
+    <ion-icon name="menu"></ion-icon>
+
+  </ion-fab-button>
+</ion-menu-toggle>
+</ion-fab> -->
+</ion-content>

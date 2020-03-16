@@ -1,0 +1,121 @@
+<ion-content no-padding>
+  <div id="map"></div>
+  <div id="contents">
+    <ion-grid no-padding style="height: 30%">
+      
+
+      <!-- <ion-row no-padding *ngIf="addressSet">
+        <ion-col size-sm="6" offset-sm="3" text-center no-padding>
+          <ion-item class="front-bordered-item-small">
+            <ion-label position="floating">What would you like to ship?</ion-label>
+            <ion-textarea type="text" rows="2" [(ngModel)]="itemDescription"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
+
+      <!-- If both addresses are given -->
+      <ion-row no-padding *ngIf="addressSet">
+        <ion-col size-sm="6" offset-sm="3" text-center no-padding>
+
+          <ion-grid no-padding>
+            <ion-row no-padding>
+              <ion-col size-sm="6" no-padding>
+                <ion-item class="front-bordered-item-small" lines="none">
+                  <ion-label position="floating">Total Weight (Kg)</ion-label>
+                  <ion-input type="number" [(ngModel)]="weight"></ion-input>
+                </ion-item>
+
+              </ion-col>
+
+              <ion-col size-sm="6" no-padding>
+                <ion-item class="front-bordered-item-small" lines="none">
+                  <ion-label position="floating">Worth of items(N)</ion-label>
+                  <ion-input type="number" [(ngModel)]="worth"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size-sm="12" no-padding>
+                <ion-item class="front-bordered-item-small" lines="none">
+                  <ion-label (click)="presentActionSheet()">
+                    <ion-icon name="time"></ion-icon>{{ serviceType }}
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+
+            </ion-row>
+
+            <ion-row>
+              <ion-col size-sm="12" no-padding>
+
+                <ion-button expand="block" (click)="proceed()">Proceed</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <!--End If both addresses are given -->
+
+      <!-- If Vehicle is selected -->
+      <ion-row no-padding>
+        <ion-col size-sm="6" offset-sm="3" text-center no-padding>
+          <ion-card no-padding color="light-tint">
+
+            <ion-grid>
+
+              <ion-row (click)="proceed()">
+                <ion-col size-sm="4">
+                  <ion-card-title>
+                    <ion-img [src]="vehicleImage" style="width: 120px;" no-padding></ion-img>
+                  </ion-card-title>
+                </ion-col>
+
+                <ion-col size-sm="4">
+                  <ion-card-title text-center>N {{ amount }}</ion-card-title>
+                </ion-col>
+
+                <ion-col size-sm="4">
+                  <ion-card-title text-center>Arrive in {{ETA}} mins</ion-card-title>
+                </ion-col>
+              </ion-row>
+
+            </ion-grid>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      
+    </ion-grid>
+  </div>
+
+
+  <!-- location center fab button -->
+  <ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="getCurrentLocation()" color="medium-shade">
+      <ion-icon name="locate"></ion-icon>
+
+    </ion-fab-button>
+  </ion-fab>
+  <!-- location center fab button ends -->
+
+  <!-- backHome fab button -->
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+    <ion-menu-toggle>
+      <ion-fab-button color="dark">
+        <ion-icon name="menu"></ion-icon>
+
+      </ion-fab-button>
+    </ion-menu-toggle>
+  </ion-fab>
+  <!-- backHome fab button ends here -->
+
+  
+  <!-- selectedVehicle fab button -->
+  <ion-fab vertical="top" horizontal="start" slot="fixed" *ngIf="vehicleSelected">
+    <ion-fab-button color="light" (click)="onClearVehicleSelection()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- selectedVehicle fab button ends here-->
+
+</ion-content>

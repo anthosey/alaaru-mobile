@@ -1,0 +1,79 @@
+<ion-header> 
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button (click)="onCancel()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+  <ion-title>Make Payment</ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid no-padding>
+  <div class="div-head" no-padding>
+      <ion-row no-padding no-margin>
+        <ion-col size-sm="3" offset-sm="3">
+          
+            <h3>Amount Payable: </h3>
+          
+        </ion-col>
+
+        <ion-col size-sm="3">
+          
+            <h3>{{ quote|currency:"NGN":"symbol"}}</h3>
+          
+        </ion-col>
+      </ion-row>
+</div>
+
+<div>
+    <ion-row padding>
+      <ion-col size-sm="3" offset-sm="3">
+        
+          <h3>Wallet Balance: </h3>
+        
+      </ion-col>
+
+      <ion-col size-sm="3">
+        
+          <h3>{{ wallet|currency:"NGN":"symbol"}}</h3>
+        
+      </ion-col>
+    </ion-row>
+</div>
+<ion-row>
+  <ion-col size-sm="3" offset-sm="3">
+    
+      <ion-button size="large" expand="block" type="button" onclick="payWithPaystack('seye@gmail.com', amount , 'NGN', refNumber)">Pay with Card {{ refNumber }}</ion-button>
+  
+    <ion-button onclick="showMe()">TestRun</ion-button>
+  </ion-col>
+
+    <ion-col size-sm="3">
+      <ion-button size="large" expand="block" type="button" (click)="openBrowser()">Pay with Wallet {{ amount }}</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <!-- <angular4-paystack
+      [email]="'mailexample@mail.com'"
+      [amount]="5000000"
+      [ref]="reference"
+      [channels]="['bank']"
+      [class]="'btn btn-primary'"
+      (close)="paymentCancel()"
+      (callback)="paymentDone($event)">
+      Pay with Paystack
+    </angular4-paystack> -->
+
+<script>
+  function showMe(){
+    alert('This is me');
+  }
+  
+</script>
+  
+  </ion-col>
+  </ion-row>
+
+</ion-grid>
+</ion-content>

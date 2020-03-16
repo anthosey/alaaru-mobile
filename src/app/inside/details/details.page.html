@@ -1,0 +1,170 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ transaction.logisticsType }}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-grid lines="both">
+          <div class="div-head"  *ngIf="transaction.pickupRef" style="text-align: center; padding:5px;">
+            SERVICE DESCRIPTION
+        </div>
+ 
+        <ion-row *ngIf="transaction.pickupRef"> <!-- Real Data in inner grid -->
+          <ion-col size="6"><ion-item>Pickup Ref:</ion-item></ion-col>
+          <ion-col size="6"><ion-item>{{ transaction.pickupRef }}</ion-item></ion-col>
+        </ion-row>
+
+          <ion-row *ngIf="transaction.logisticType"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Transaction Type:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.logisticsType }}</ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.itemDescription"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Item Desctiption:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.itemDescription }}</ion-item></ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.amount"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Amount:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.amount }}</ion-item></ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.weight"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Weight:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.weight }}</ion-item></ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.worth"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Worth:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.worth }}</ion-item></ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.pickupStatus"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Payment Status:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.pickupPaymentStatus }}</ion-item></ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.interstateServiceOption"><!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Intercity Option:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.interstateServiceOption }}</ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.serviceOption"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Service Option:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.serviceOption }}</ion-item></ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.vehicleChoice"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Choice of Vehicle:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.vehicleChoice }}</ion-item></ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.fullVehicleCapacity"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Full Vehicle Capacity:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.fullVehicleCapacity }}</ion-item></ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.accompanyOption"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Accompanied by:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.accompanyOption }}</ion-item></ion-col>
+          </ion-row>
+
+          <ion-row  *ngIf="transaction.pickupEntryTime"> <!-- Real Data in inner grid -->
+            <ion-col size="6"><ion-item>Entry Date:</ion-item></ion-col>
+            <ion-col size="6"><ion-item>{{ transaction.pickupEntryTime }}</ion-item></ion-col>
+          </ion-row>
+
+          <div class="div-head"  *ngIf="transaction.pickupTime" style="text-align: center; padding:5px;">
+            OPERATION PROGRESS
+        </div>
+
+        <ion-row  *ngIf="transaction.pickupProgressStatus"> <!-- Real Data in inner grid -->
+          <ion-col size="6"><ion-item>Process Status:</ion-item></ion-col>
+          <ion-col size="6"><ion-item>{{ transaction.pickupProcessStatus }}</ion-item></ion-col>
+        </ion-row>
+
+        <ion-row  *ngIf="transaction.pickupTime"> <!-- Real Data in inner grid -->
+          <ion-col size="6"><ion-item>Pickup Time:</ion-item></ion-col>
+          <ion-col size="6"><ion-item>{{ transaction.pickupTime }}</ion-item></ion-col>
+        </ion-row>
+
+        <ion-row  *ngIf="transaction.deliveryTime"> <!-- Real Data in inner grid -->
+          <ion-col size="6"><ion-item>Delivery Time:</ion-item></ion-col>
+          <ion-col size="6"><ion-item>{{ transaction.deliveryTime }}</ion-item></ion-col>
+        </ion-row>
+
+        <div class="div-head"  *ngIf="transaction.interstateServiceOption" style="text-align: center; padding:5px;">
+          TRANSIT INFORMATION
+      </div>
+      <ion-row  *ngIf="transaction.interstateCityFrom"><!-- Real Data in inner grid -->
+        <ion-col size="6"><ion-item>City of Origin:</ion-item></ion-col>
+        <ion-col size="6"><ion-item>{{ transaction.interstateCityFrom }}</ion-item></ion-col>
+      </ion-row>
+
+      <ion-row  *ngIf="transaction.interstateCityTo"><!-- Real Data in inner grid -->
+        <ion-col size="6"><ion-item>Destination City:</ion-item></ion-col>
+        <ion-col size="6"><ion-item>{{ transaction.interstateCityTo }}</ion-item></ion-col>
+      </ion-row>
+      <ion-row  *ngIf="transaction.pickupAddress"> <!-- Real Data in inner grid -->
+        <ion-col size="6"><ion-item>Pickup Address:</ion-item></ion-col>
+        <ion-col size="6"><ion-item>{{ transaction.pickupAddress }}</ion-item></ion-col>
+      </ion-row>
+
+      <ion-row  *ngIf="transaction.deliveryAddress"> <!-- Real Data in inner grid -->
+        <ion-col size="6"><ion-item>Delivery Address:</ion-item></ion-col>
+        <ion-col size="6"><ion-item>{{ transaction.deliveryAddress }}</ion-item></ion-col>
+      </ion-row>
+
+      <div class="div-head" *ngIf="transaction.pickupContactPerson" style="text-align: center; padding:5px;">
+        PICKUP CONTACT PERSON
+    </div>
+
+    <ion-row  *ngIf="transaction.pickupContactPerson"> <!-- Real Data in inner grid -->
+      <ion-col size="6"><ion-item>Contact Name:</ion-item></ion-col>
+      <ion-col size="6"><ion-item>{{ transaction.pickupContactPerson }}</ion-item></ion-col>
+    </ion-row>
+    <ion-row  *ngIf="transaction.pickupContactMobile"> <!-- Real Data in inner grid -->
+      <ion-col size="6"><ion-item>Mobile:</ion-item></ion-col>
+      <ion-col size="6"><ion-item>{{ transaction.pickupContactMobile }}</ion-item></ion-col>
+    </ion-row>
+
+    <ion-row  *ngIf="transaction.pickupContactEmail"> <!-- Real Data in inner grid -->
+      <ion-col size="6"><ion-item>Email:</ion-item></ion-col>
+      <ion-col size="6"><ion-item>{{ transaction.pickupContactEmail }}</ion-item></ion-col>
+    </ion-row>
+
+    <div class="div-head"  *ngIf="transaction.deliveryContactPerson" style="text-align: center; padding:5px;">
+      DELIVERY CONTACT PERSON
+  </div>
+  <ion-row  *ngIf="transaction.deliveryContactPerson"> <!-- Real Data in inner grid -->
+    <ion-col size="6"><ion-item>Contact Name:</ion-item></ion-col>
+    <ion-col size="6"><ion-item>{{ transaction.deliveryContactPerson }}</ion-item></ion-col>
+  </ion-row>
+
+  <ion-row  *ngIf="transaction.deliveryContactMobile"> <!-- Real Data in inner grid -->
+    <ion-col size="6"><ion-item>Mobile:</ion-item></ion-col>
+    <ion-col size="6"><ion-item>{{ transaction.deliveryContactMobile }}</ion-item></ion-col>
+  </ion-row>
+
+  <ion-row  *ngIf="transaction.deliveryContactEmail"> <!-- Real Data in inner grid -->
+    <ion-col size="6"><ion-item>Email:</ion-item></ion-col>
+    <ion-col size="6"><ion-item>{{ transaction.deliveryContactEmail }}</ion-item></ion-col>
+  </ion-row>
+
+          
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

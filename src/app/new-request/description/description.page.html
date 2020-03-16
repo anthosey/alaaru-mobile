@@ -1,0 +1,191 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/new-request">
+          </ion-back-button>
+        </ion-buttons>
+    <ion-title>OTHER DETAILS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<ion-grid no-padding>
+
+  <div class="div-head" *ngIf="quote" no-padding>
+        <ion-row no-padding no-margin>
+          <ion-col size-sm="3" offset-sm="3">
+            
+              <h3>Estimated Cost: </h3>
+            
+          </ion-col>
+  
+          <ion-col size-sm="3">
+            
+              <h3>{{ quote|currency:"NGN":"symbol"}}</h3>
+            
+          </ion-col>
+        </ion-row>
+  </div>
+  
+  <ion-row>
+    <ion-col size-sm="6" offset-sm="3">
+      <ion-item class="bordered-item-small">
+        <ion-label position="floating">Item Description</ion-label>
+        <ion-textarea 
+        row="3"
+        ngModel
+        name="itemDescription"
+        required></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="(logisticsType === 'Within city' || interstate_ServiceOption === 'doorToDoor' || interstate_ServiceOption === 'pickupOnly')">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item class="bordered-item-small">
+          <ion-label position="floating">Who should we pick up your items from?</ion-label>
+          <ion-input 
+          type="text" 
+          name="pickupContactName" 
+          ngModel
+          value ="{{ name }}"
+          required></ion-input>
+
+          <ion-label position="floating">Phone number?</ion-label>
+          <ion-input 
+          type="number" 
+          name="pickupContactMobile" 
+          ngModel
+          value ="{{ mobile }}"
+          required></ion-input>
+
+
+          <ion-label position="floating">Email Address?</ion-label>
+          <ion-input 
+          type="email" 
+          name="pickupContactEmail" 
+          ngModel
+          value ="{{ email }}"
+          ></ion-input>
+
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="(logisticsType === 'Within city' || interstate_ServiceOption === 'doorToDoor' || interstate_ServiceOption === 'pickupOnly')">
+        <ion-col size-sm="6" offset-sm="3">
+          <!-- <ion-item class="flat-item"> -->
+            <!-- <ion-label position="floating">Phone number?</ion-label>
+            <ion-input 
+            type="number" 
+            name="pickupContactMobile" 
+            ngModel
+            value ="{{ mobile }}"
+            required></ion-input> -->
+          <!-- </ion-item> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="(logisticsType === 'Within city' || interstate_ServiceOption === 'doorToDoor' || interstate_ServiceOption === 'pickupOnly')">
+        <ion-col size-sm="6" offset-sm="3">
+          <!-- <ion-item class="flat-item"> -->
+            <!-- <ion-label position="floating">Email Address?</ion-label>
+            <ion-input 
+            type="email" 
+            name="pickupContactEmail" 
+            ngModel
+            value ="{{ email }}"
+            ></ion-input> -->
+          <!-- </ion-item> -->
+
+          <ion-item text-end>
+            <!-- Circles -->
+            <ion-item *ngIf="loading">
+              <ion-spinner name="circles" color="primary"></ion-spinner>
+            </ion-item>
+  
+            <ion-label><small>Use my Contact</small></ion-label>
+            <ion-toggle name="pickupContactSwitch" #pickupContactSwitch checked="{{ pickupContactSwitchState }}" color="primary"
+              (ionChange)="getUserContactInfo(pickupContactSwitch)"></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="(logisticsType === 'Within city' || interstate_ServiceOption === 'doorToDoor' || interstate_ServiceOption === 'destinationOnly')">
+          <ion-col size-sm="6" offset-sm="3">
+            <ion-item class="bordered-item-small">
+              <ion-label position="floating">Who should we deliver your items to?</ion-label>
+              <ion-input 
+              type="text" 
+              name="deliveryContactName" 
+              ngModel 
+              required
+              value="{{ name2 }}"></ion-input>
+
+              <ion-label position="floating">Phone number?</ion-label>
+              <ion-input 
+              type="number" 
+              name="deliveryContactMobile" 
+              ngModel 
+              required
+              value="{{ mobile2 }}"></ion-input>
+
+              <ion-label position="floating">Email Address?</ion-label>
+              <ion-input 
+              type="email" 
+              name="deliveryContactEmail" 
+              ngModel
+              value="{{ email2 }}"></ion-input>
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row *ngIf="(logisticsType === 'Within city' || interstate_ServiceOption === 'doorToDoor' || interstate_ServiceOption === 'destinationOnly')">
+            <ion-col size-sm="6" offset-sm="3">
+              <!-- <ion-item class="flat-item"> -->
+                <!-- <ion-label position="floating">Phone number?</ion-label>
+                <ion-input 
+                type="number" 
+                name="deliveryContactMobile" 
+                ngModel 
+                required
+                value="{{ mobile2 }}"></ion-input> -->
+              <!-- </ion-item> -->
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="(logisticsType === 'Within city' || interstate_ServiceOption === 'doorToDoor' || interstate_ServiceOption === 'destinationOnly')">
+            <ion-col size-sm="6" offset-sm="3">
+              <!-- <ion-item class="flat-item"> -->
+                <!-- <ion-label position="floating">Email Address?</ion-label>
+                <ion-input 
+                type="email" 
+                name="deliveryContactEmail" 
+                ngModel
+                value="{{ email2 }}"></ion-input> -->
+              <!-- </ion-item> -->
+
+              <ion-item text-end>
+                <!-- Circles -->
+                <ion-item *ngIf="loading2">
+                  <ion-spinner name="circles" color="primary"></ion-spinner>
+                </ion-item>
+      
+                <ion-label><small>Use my Contact</small></ion-label>
+                <ion-toggle name="deliveryContactSwitch" #deliveryContactSwitch checked="{{ deliveryContactSwitchState }}" color="primary"
+                  (ionChange)="getUserContactInfo_delivery(deliveryContactSwitch)"></ion-toggle>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+              <ion-button type="submit" fill="solid" expand="block" [disabled]="!f.valid"
+              size="large">Submit Request</ion-button>
+            </ion-col>
+          </ion-row>
+         
+</ion-grid>
+</form>
+</ion-content>

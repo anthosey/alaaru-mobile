@@ -1,0 +1,200 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+// .ion-invalid.ion-touched ion-label {
+//     color: var(--ion-color-danger);
+// }
+
+// .errorMsg {
+//     color: var(--ion-color-danger);
+// }
+
+// .btn-alaaru { 
+//     /* margin-top: 1rem; */
+//   }
+  
+  
+//   /* ALAARU SPECIAL BUTTONS */
+//   .btn-alaaru a,
+//   .btn-alaaru button{
+//     text-decoration: none;
+//     border-radius: .3rem;
+//     background-color: #E87C36;
+//     border: 1px solid #E87C36; 
+//     color: #fff;
+//     text-align: center;
+//   }
+  
+//   .btn-alaaru a:hover,
+//   .btn-alaaru a:active,
+//   .btn-alaaru button:hover,
+//   .btn-alaaru button:active {
+//   background-color: #f86c3a;
+//   }
+  
+//   .btn-alaaru .btn-small {
+//     padding-top: .5rem;
+//     padding-bottom: .5rem;
+//     padding-left: 1rem;
+//     padding-right: 1rem;
+//     /* padding: 1rem; */
+//     font-size: 1.2rem;
+//   }
+  
+//   .btn-alaaru .btn-big {
+//     padding-top: .6rem;
+//     padding-bottom: .6rem;
+//     padding-left: 1.2rem;
+//     padding-right: 1.2rem;
+//     /* padding: 1rem; */
+//     font-size: 1.6rem;
+//     }
+  
+  
+//     .btn-alaaru-outline {
+      
+//     }
+    
+//     .btn-alaaru-outline .btn-big {
+//       padding-top: .6rem;
+//     padding-bottom: .6rem;
+//     padding-left: 1.2rem;
+//     padding-right: 1.2rem;
+//     font-size: 1.6rem;
+//     border: 2px solid #f86c3a;
+//       background-color: white;
+      
+//     }
+    
+//     .btn-alaaru-outline .btn-small {
+//     padding-top: .5rem;
+//     padding-bottom: .5rem;
+//     padding-left: 1rem;
+//     padding-right: 1rem;
+//     font-size: 1.2rem;
+//     border: 2px solid #f86c3a;
+//       background-color: white;
+//       border-radius: .5rem;
+//     }
+  
+//     .btn-alaaru-outline a:hover,
+//   .btn-alaaru-outline a:active,
+//   .btn-alaaru-outline button:hover,
+//   .btn-alaaru-outline button:active {
+//   background-color: #f86c3a;
+//   color: #FFFFFF;}
+    
+  
+  
+//   .btn-alaaru-outline-black {
+      
+//   }
+  
+//   .btn-alaaru-outline-black .btn-big {
+//     padding-top: .6rem;
+//   padding-bottom: .6rem;
+//   padding-left: 1.2rem;
+//   padding-right: 1.2rem;
+//   font-size: 1.6rem;
+//   border: 2px solid #000000;
+//     background-color: white;
+    
+//   }
+  
+//   .btn-alaaru-outline-black .btn-small {
+//   padding-top: .5rem;
+//   padding-bottom: .5rem;
+//   padding-left: 1rem;
+//   padding-right: 1rem;
+//   font-size: 1.2rem;
+//   border: 2px solid #000;
+//     background-color: white;
+//     border-radius: .5rem;
+//   }
+  
+//   .btn-alaaru-outline-black a:hover,
+//   .btn-alaaru-outline-black a:active,
+//   .btn-alaaru-outline-black button:hover,
+//   .btn-alaaru-outline-black button:active {
+//   background-color: #000000;
+//   color: #FFFFFF;}
+
+//   .grid {
+//     // --ion-grid-padding: 5px;
+//   }
+
+  .grid-col {
+    --ion-grid-column-padding: none;
+    --ion-grid-column-margin: none;
+  }
+
+
+.actionSheet {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-dark);
+  --size: '24px';
+}
+
+.div-head {
+  min-height: 30px;
+  background-color: var(--ion-color-light-shade);
+  color: var(--ion-color-light-contrast);
+  padding:2px 0px 2px 10px;
+}
+
+.grid-row {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .image-logo {
+    height:140px;
+    padding:10px;
+    
+    border-color: var(--ion-color-primary-contrast);
+  }
+
+  .logo-toolbar {
+    --border-color: black;
+    --border-width: 2px;
+    // --opacity: 0.3;
+  }
+  .body {
+    font-family: fantasy;
+    background-color: red;
+  }
+  .modal {
+    --background: red;
+  }
+
+  .menu-text {
+    font-size: 20px;
+    padding:20px;
+    // font-weight: 500;
+  }
+  // ion-action-sheet {
+  //   background-selected: #E87C36;
+  // }

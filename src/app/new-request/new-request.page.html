@@ -1,0 +1,218 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/vehicle-types">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons id ="but2" slot="end">
+      <ion-button (click) ="presentPopover()">
+        <ion-icon name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>{{ logisticsType | uppercase}}: {{ vehicleOption }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content no-padding no-margin>
+
+  <!-- <ion-button (click)="GoTo()" >Go To Selected Location</ion-button> -->
+
+
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" no-padding no-margin>
+    <ion-grid no-padding no-margin>
+      <div class="div-head" *ngIf="quote" no-padding>
+        <ion-row no-padding no-margin>
+          <ion-col size-sm="3" offset-sm="3">
+
+            <h3>Estimated Cost: </h3>
+
+          </ion-col>
+
+          <ion-col size-sm="3">
+
+            <h3>{{ quote|currency:"NGN":"symbol"}}</h3>
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <ion-row *ngIf="logisticsType === 'Inter-city'">
+        <ion-col size-sm="6" offset-sm="3" text-center>
+          <h2>{{ interstate_CityFrom }} - {{ interstate_CityTo }}</h2>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="(logisticsType === 'Within city' || interstate_ServiceOption === 'doorToDoor' || interstate_ServiceOption === 'pickupOnly')">
+        <ion-col size-sm="6" offset-sm="3">
+
+          <ion-item lines="none" class="bordered-item">
+            <ion-label position="floating"> Pickup Address</ion-label>
+
+            <ion-input [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" id="pickupAddress"
+              name="pickupAddress" required #pickupAddressCtrl="ngModel"></ion-input>
+            <p class="flat-item-small errorMsg" *ngIf="!pickupAddressCtrl.valid && pickupAddressCtrl.touched">Please supply a pickup
+              address</p>
+          </ion-item>
+
+
+          <ion-list [hidden]="autocompleteItems.length == 0 || autocomplete.input.length == 0">
+            <ion-item *ngFor="let item of autocompleteItems"
+            tappable (click)="selectSearchResult(item)"
+            class="flat-item">{{ item.description }}
+            </ion-item>
+          </ion-list>
+
+          <ion-item text-end class="flat-item-small">
+            <!-- Circles -->
+            <ion-item *ngIf="loading" lines="none">
+              <ion-spinner name="circles" color="primary"></ion-spinner>
+            </ion-item>
+
+            <ion-label><small>Use my location</small></ion-label>
+            <ion-toggle name="pickupSwitch" #pickupSwitch checked="{{ pickupSwitchState }}" color="primary"
+              (ionChange)="getCurrentPosition(pickupSwitch)"></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row no-padding no-margin>
+          <ion-col size-sm="6" offset-sm="3" no-padding no-padding>
+            <div class="div-head" no-padding no-padding>
+              <h3>Delivery Address</h3>
+            </div>
+          </ion-col>
+        </ion-row> -->
+      <ion-row *ngIf="(logisticsType === 'Within city' || interstate_ServiceOption === 'doorToDoor' || interstate_ServiceOption === 'destinationOnly')">
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item lines="none" class="bordered-item">
+            <ion-label position="floating">Delivery Address</ion-label>
+
+            <ion-input [(ngModel)]="autocomplete_delivery.input" (ionInput)="updateSearchResults_delivery()" type="text"
+              id="deliveryAddress" name="deliveryAddress" required #deliveryAddressCtrl="ngModel"></ion-input>
+            <p class="flat-item-small errorMsg" *ngIf="!deliveryAddressCtrl.valid && deliveryAddressCtrl.touched">Please supply a
+              delivery address</p>
+          </ion-item>
+
+          <ion-list [hidden]="autocompleteItems_delivery.length == 0 || autocomplete_delivery.input.length == 0">
+            <ion-item *ngFor="let item of autocompleteItems_delivery" 
+            tappable
+            (click)="selectSearchResult_delivery(item)"
+            class="flat-item">
+              {{ item.description }}
+            </ion-item>
+          </ion-list>
+
+          <ion-item text-end class="flat-item-small" lines="none">
+            <!-- Circles -->
+            <ion-item *ngIf="loading2">
+              <ion-spinner name="circles" color="primary"></ion-spinner>
+            </ion-item>
+
+            <ion-label><small>Use my location</small></ion-label>
+            <ion-toggle name="deliverySwitch" #deliverySwitch checked="{{ deliverySwitchState }}" color="primary"
+              (ionChange)="getCurrentPosition(deliverySwitch)"></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="3" offset-sm="3" text-end>
+          <ion-item class="flat-item" lines="none">
+            <ion-label position="floating">Weight (Kg)</ion-label>
+            <ion-input type="number" id="weight" name="weight" [value]="fullVehicleCapacity? 0:1"
+              [disabled]="fullVehicleCapacity? true:false" ngModel required #weightCtrl="ngModel"></ion-input>
+            <p class="flat-item-small errorMsg" *ngIf="!weightCtrl.valid && weightCtrl.touched">Please supply weight in Kg</p>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="3">
+          <ion-item class="flat-item" lines="none">
+            <ion-label position="floating">Monetary Value</ion-label>
+            <ion-input type="number" id="worth" name="worth" ngModel required #worthCtrl="ngModel"></ion-input>
+            <p class="flat-item-small errorMsg" *ngIf="!worthCtrl.valid && worthCtrl.touched">What is the worth of your item?</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="(logisticsType === 'Within city' || interstate_ServiceOption === 'doorToDoor' || interstate_ServiceOption === 'pickupOnly')">
+        <ion-col size-sm="6" offset-sm="3">
+
+            <ion-item lines="none" class="bordered-item" lines="none">
+              <ion-label>Service Options</ion-label>
+              <ion-select name="serviceType" id="serviceType" ngModel required #serviceOptionCtrl="ngModel"
+                (ionChange)="onChangeServiceOption(serviceOptionCtrl)">
+                <ion-select-option *ngFor="let service of serviceTypes">{{ service.serviceType }}
+                </ion-select-option>
+                <!-- <ion-select-option value="Instant">Instant</ion-select-option>
+                          <ion-select-option value="Schedule">Schedule</ion-select-option> -->
+              </ion-select>
+              <p class="flat-item-small errorMsg" *ngIf="!serviceOptionCtrl.valid && serviceOptionCtrl.touched">Please select a service
+                type</p>
+            </ion-item>
+
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+            <ion-item *ngIf="serviceOption === 'Schedule'">
+              <ion-label>Pickup Time:</ion-label>
+              <ion-datetime placeholder="Select date and time" displayFormat="D MMM YYYY H:mm" min="2019" max="2020"
+                value="2005-06-17T11:06Z" name="pickupTime" required ngModel>
+              </ion-datetime>
+            </ion-item>
+            <ion-item *ngIf="serviceOption === 'Schedule'">
+              <ion-label>Delivery Time:</ion-label>
+              <ion-datetime placeholder="Select date and time" displayFormat="D MMM YYYY H:mm" min="2019" max="2020"
+                value="2005-06-17T11:06Z" name="deliveryTime" required ngModel>
+              </ion-datetime>
+            </ion-item>
+
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="fullVehicleCapacity">
+        <ion-col size-sm="6" offset-sm="3">
+
+          <ion-item lines="none">
+            <ion-label>Who will accompany the load?</ion-label>
+            <ion-select name="accompanyOption" id="accompanyOption" ngModel required #accompanyOptionCtrl="ngModel"
+              (ionChange)="onChangeAccompanyOption(accompanyOptionCtrl)">
+              <ion-select-option value="Myself">Myself</ion-select-option>
+              <ion-select-option value="Someone else">Someone else</ion-select-option>
+              <ion-select-option value="Nobody">Nobody</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-button type="submit" 
+          color="primary" expand="block" 
+          fill="solid" [disabled]="!f.valid"
+          size="large" >Proceed
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <div id="map">
+
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </form>
+</ion-content>
